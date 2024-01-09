@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">primerno</string>
+    <string name="brand">brand</string>
+    <string name="license">license</string>
+    <string name="status">status</string>
+    <string name="owner">owner</string>
+    <string name="save">Save</string>
+</resources>
