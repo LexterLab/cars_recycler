@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity implements FrameLoader {
         adapter.setFrameLoader(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        FrameLayout frame = findViewById(R.id.frame);
         brand = findViewById(R.id.brandEdit);
         license = findViewById(R.id.licenseEdit);
         status = findViewById(R.id.statusEdit);
