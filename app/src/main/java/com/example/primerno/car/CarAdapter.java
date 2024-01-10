@@ -9,11 +9,11 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.primerno.MainActivity;
 import com.example.primerno.R;
 import com.example.primerno.utils.FrameLoader;
 
 import java.util.List;
+import java.util.Random;
 
 public class CarAdapter extends RecyclerView.Adapter<CarViewHolder> {
     private Context context;
@@ -48,7 +48,6 @@ public class CarAdapter extends RecyclerView.Adapter<CarViewHolder> {
         });
 
         holder.itemView.setOnLongClickListener(view -> {
-//            ((MainActivity) context).loadFrame(car);
             frameLoader.loadFrame(car);
             return false;
         });
@@ -57,6 +56,14 @@ public class CarAdapter extends RecyclerView.Adapter<CarViewHolder> {
     @Override
     public int getItemCount() {
         return cars.size();
+    }
+
+    public void modifyItem() {
+        Random random = new Random();
+        int randomPos = random.nextInt(getItemCount());
+        Car car = cars.get(randomPos);
+        car.setAvailable(!car.isAvailable());
+        notifyItemChanged(randomPos);
     }
 
     public void setFrameLoader(FrameLoader frameLoader) {
