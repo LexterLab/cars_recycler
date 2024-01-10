@@ -11,11 +11,12 @@ import android.widget.FrameLayout;
 import com.example.primerno.car.Car;
 import com.example.primerno.car.CarAdapter;
 import com.example.primerno.car.CarSource;
+import com.example.primerno.utils.FrameLoader;
 
 import java.util.List;
 import java.util.Objects;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements FrameLoader {
 
     private EditText brand;
     private EditText license;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recycler);
         List<Car> cars = CarSource.getCars();
         CarAdapter adapter = new CarAdapter(cars);
+        adapter.setFrameLoader(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         FrameLayout frame = findViewById(R.id.frame);
@@ -44,9 +46,12 @@ public class MainActivity extends AppCompatActivity {
             Objects.requireNonNull(recyclerView.getAdapter()).notifyItemChanged(position);
         });
 
+        
+
     }
 
-    public void loadFrame(Car car) {
+    @Override
+        public void loadFrame(Car car) {
         brand.setText(car.getBrand());
         license.setText(car.getLicensePlate());
         owner.setText(car.getOwnerName());

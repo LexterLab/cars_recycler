@@ -11,12 +11,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.primerno.MainActivity;
 import com.example.primerno.R;
+import com.example.primerno.utils.FrameLoader;
 
 import java.util.List;
 
 public class CarAdapter extends RecyclerView.Adapter<CarViewHolder> {
     private Context context;
     private final List<Car> cars;
+    private FrameLoader frameLoader;
 
     public CarAdapter(List<Car> cars) {
         this.cars = cars;
@@ -46,7 +48,8 @@ public class CarAdapter extends RecyclerView.Adapter<CarViewHolder> {
         });
 
         holder.itemView.setOnLongClickListener(view -> {
-            ((MainActivity) context).loadFrame(car);
+//            ((MainActivity) context).loadFrame(car);
+            frameLoader.loadFrame(car);
             return false;
         });
     }
@@ -54,5 +57,9 @@ public class CarAdapter extends RecyclerView.Adapter<CarViewHolder> {
     @Override
     public int getItemCount() {
         return cars.size();
+    }
+
+    public void setFrameLoader(FrameLoader frameLoader) {
+        this.frameLoader = frameLoader;
     }
 }
