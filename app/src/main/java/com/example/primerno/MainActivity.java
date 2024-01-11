@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements FrameLoader {
     private EditText owner;
     private CarAdapter adapter;
     private Handler handler;
+    private int position;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +44,6 @@ public class MainActivity extends AppCompatActivity implements FrameLoader {
         handler.postDelayed(modifyItem, 2500);
 
         findViewById(R.id.save).setOnClickListener(view -> {
-            int position = getIntent().getIntExtra("pos", 0);
             Car car = new Car(brand.getText().toString(), license.getText().toString(), Boolean.parseBoolean(status.getText().toString()));
             car.setOwnerName(owner.getText().toString());
             cars.set(position, car);
@@ -63,10 +63,11 @@ public class MainActivity extends AppCompatActivity implements FrameLoader {
     };
 
     @Override
-        public void loadFrame(Car car) {
+        public void loadFrame(Car car, int pos) {
         brand.setText(car.getBrand());
         license.setText(car.getLicensePlate());
         owner.setText(car.getOwnerName());
         status.setText(String.valueOf(car.isAvailable()));
+        position = pos;
     }
 }

@@ -48,7 +48,7 @@ public class CarAdapter extends RecyclerView.Adapter<CarViewHolder> {
         });
 
         holder.itemView.setOnLongClickListener(view -> {
-            frameLoader.loadFrame(car);
+            frameLoader.loadFrame(car, position);
             return false;
         });
     }
