@@ -3,7 +3,9 @@ package com.example.primerno;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -69,5 +71,7 @@ public class MainActivity extends AppCompatActivity implements FrameLoader {
         owner.setText(car.getOwnerName());
         status.setText(String.valueOf(car.isAvailable()));
         position = pos;
+        FrameLayout frameLayout = findViewById(R.id.frame);
+        frameLayout.setVisibility(View.VISIBLE);
     }
 }
